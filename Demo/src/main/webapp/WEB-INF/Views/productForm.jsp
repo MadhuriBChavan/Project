@@ -4,12 +4,18 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page isELIgnored="false" %>
+<%@ include file="header.jsp"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>ADD New Product</title>
 </head>
-<body>
+<body class="bg-warning">
+<center><H3> Add New Product</H3></center>
 	<c:url value="/admin/product/addProduct" var="url"></c:url>
 	<form:form method="post" action="${url}" commandName="productFormObj" enctype="multipart/form-data">
 	<table>
@@ -19,7 +25,7 @@
 	</tr>
 	<tr>
 	<td><form:label path="product_Name">Product Name</form:label></td>
-	<td><form:input path="product_Name"/></td>
+	<td><form:input path="product_Name"/></td><br>
 	</tr>
 	<tr>
 	<td><form:label path="price">Price</form:label></td>
@@ -28,13 +34,14 @@
 	<tr>
 	<td><form:label path="category">CATEGORY</form:label></td>
 	<td>
-	<form:radiobutton path="category.CID" value="1"/>New Arrivals
-	<form:radiobutton path="category.CID" value="2"/>Special Edition	
-	<form:radiobutton path="category.CID" value="3"/>Discount Sale
-	<form:radiobutton path="category.CID" value="4"/>General
+	<br><form:radiobutton path="category.CID" value="1"/>New Arrivals
+	<br><form:radiobutton path="category.CID" value="2"/>Special Edition	
+	<br><form:radiobutton path="category.CID" value="3"/>Discount Sale
+	<br><form:radiobutton path="category.CID" value="4"/>General
 	</td>
 	</tr>
 	<tr>
+	<td><form:label path="productImage">image</form:label></td>
 	<td><form:input type="file" path="productImage"/></td>
 	</tr>
 	<tr>
@@ -42,5 +49,8 @@
 	</tr>
 	</table>
 	</form:form>
+	<%@ include file="footer.jsp"%>
+</div>
+</div>
 </body>
 </html>

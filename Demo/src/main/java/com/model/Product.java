@@ -1,5 +1,8 @@
 package com.model;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,20 +13,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="productapp")
-public class Product {
+public class Product implements Serializable {
 	@Id 
 	@Column(name="PID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int PID;
+	@NotEmpty(message="Name is Mandatory")
 	private String Product_Name;
 	private double Price;
+	
 	@ManyToOne
 	@JoinColumn(name="CID")
 	private Category category;
+	
+	@ManyToOne
+	@JoinColumn(name="SID")
+	private Supplier supplier;
 	@Transient
 	private MultipartFile productImage;
 	public int getPID() {
@@ -56,6 +66,12 @@ public class Product {
 	public void setProductImage(MultipartFile productImage) {
 		this.productImage = productImage;
 	}
-	
+	public Supplier getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
 
 }
